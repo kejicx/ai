@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>KC Copilot</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com "></script>
+    <!-- React库（可选） -->
+    <script src="https://unpkg.com/react @18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom @18/umd/react-dom.development.js"></script>
+</head>
+<body class="flex flex-col h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-gray-800 dark:text-white">KC Copilot</h1>
+        <button id="exportBtn" class="px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm transition-colors duration-200 flex items-center gap-1">
+            <svg>...<!-- SVG图标代码 -->...</svg>
+            导出对话
+        </button>
+    </header>
+
+    <!-- Messages Container -->
+    <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+    
+    <!-- Input Area -->
+    <div class="bg-white dark:bg-gray-800 p-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex space-x-2">
+            <textarea id="input" 
+                placeholder="输入消息..."
+                class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-colors duration-200"></textarea>
+            <button id="sendBtn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[80px]">
+                发送
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // 模拟React状态
+        let messages = [
+            { role: "assistant", content: "你好！我是 DeepSeek，有什么可以帮助你的吗？" }
+        ];
+        let input = "";
+        let isLoading = false;
+
+        // DOM引用
+        const messagesContainer = document.getElementById('messagesContainer');
+        const inputElement = document.getElementById('input');
+        const sendButton = document.getElementById('sendBtn');
+        const exportButton = document.getElementById('exportBtn');
+
+        // 渲染消息
+        function renderMessages() {
+            messagesContainer.innerHTML = '';
+            messages.forEach((msg, index) => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `max-w-[80%] p-3 rounded-lg ${
+                    msg.role === "user"
+                        ? "ml-auto bg-indigo-600 text-white rounded-br-none"
+                        : "mr-auto bg-white dark:bg-gray-700 text-gray-800 dark:text-white rounded-bl-none shadow"
+                }`;
+                msgDiv.innerHTML = `<p class="whitespace-pre-wrap">${msg.content}</p>`;
+                messagesContainer.appendChild(msgDiv);
+            });
+            
+            // 自动滚动
+            messagesContainer.lastChild?.scrollIntoView({ behavior: "smooth" });
+        }
+
+        // 发送消息处理
+        async function handleSend() {
+            // 实现与React代码相同的逻辑...
+        }
+
+        // 导出对话
+        exportButton.addEventListener('click', () => {
+            // 实现与React代码相同的逻辑...
+        });
+
+        // 初始化渲染
+        renderMessages();
+    </script>
+</body>
+</html>
